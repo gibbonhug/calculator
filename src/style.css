@@ -66,11 +66,16 @@
     grid-row: 4;
 }
 
+#btnEquals {
+    grid-column: span 2;
+}
+
 #funcDiv {
     justify-self: end;
     display: grid;
     grid-template-columns: repeat(1, 12vh);
     grid-template-rows: repeat(5, 12vh);
+    gap: .375vh;
 }
 
 body {

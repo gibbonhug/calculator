@@ -37,14 +37,19 @@ appendSiblings(getElem('funcDiv'), funcBtns);
     getElem('btnDivide').innerText = '÷';
     getElem('btnDivide').dataset.operator = '÷';
 
-
-// create result(equals) and clear btns:
-const resultBtns = createSimilarElems('button', 0, ['resultBtn', 'calcBtn'], 'btnEquals', 'btnClear');
+// create clear btn:
+let settingsBtns = createSimilarElems('button', 1, ['settingsBtn', 'calcBtn'], 'btnClear');
 // append:
-appendSiblings(getElem('resultDiv'), resultBtns);
-// set inner text, display has none on load:
-getElem('btnEquals').innerText = '=';
+appendSiblings(getElem('funcDiv'), settingsBtns);
+// set inner text to 'AC' like on real calculator:
 getElem('btnClear').innerText = 'AC';
+
+// create equals btn:
+let resultBtns = createSimilarElems('button', 0, ['resultBtn', 'calcBtn'], 'btnEquals');
+// append:
+appendSiblings(getElem('numDiv'), resultBtns);
+// equals sign for the text:
+getElem('btnEquals').innerText = '=';
 
 // create the display:
 const displayBtn = createSimilarElems('div', 0, ['display'], 'divDisplay');
@@ -59,17 +64,21 @@ let operator: string | undefined = undefined;
 
 // when clicking a number button:
 function setNum(num: number) {
-    // we have not set our first number yet, so we set it:
-    if (num1 === undefined && operator == undefined) {
-        num1 = num;
-        return num1; // for display func
-    } else if (operator == undefined) { // we are still typing in our first num
-        // (we concatenate input because that is how 'real' calculators work)
-        if (checkBelowMaxLength(num1!)) { // num1 must be <= 13 chars to add more to it
-            num1 = concatenate(num1!, num);
+    if (operator === undefined) {
+        // we have not set our first number yet, so we set it:
+        if (num1 === undefined) {
+            num1 = num;
+            return num1; // for display func
+        } else { // we are still typing in our first num
+            // (concatenate input because that is how 'real' calculators work)
+            if (checkBelowMaxLength(num1!)) { // num1 must be <= 13 chars to add more to it
+                num1 = concatenate(num1!, num);
+            }
+            return num1;
         }
-        return num1;
-    } else if (num2 == undefined) { // we have set our operator, and this is first/only dig of num2
+    }
+    // both the operator and all of num1 are defined if reach here:
+    if (num2 == undefined) { // this is first/only dig of num2
         num2 = num;
         return num2;
     } else { // we have already set first digit of num2, and now concatenate more
