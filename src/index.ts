@@ -36,7 +36,7 @@ const resultBtns = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'bt
 appendSiblings(getElem('resultDiv'), resultBtns);
 // set inner text (none for display):
 getElem('btnEquals').innerText = 'Equals';
-getElem('btnClear').innerText = 'Clear';
+getElem('btnClear').innerText = 'AC';
 
 
 // init num and operator variables:
@@ -50,13 +50,17 @@ function setNum(num: number) {
     // we have not set our first number yet, so we set it:
     if (num1 === undefined && operator == undefined) {
         num1 = num;
+        return num1; // for display func
     } else if (operator == undefined) { // we are still typing in our first num
         // (we concatenate input because that is how 'real' calculators work)
         num1 = concatenate(num1!, num);
+        return num1;
     } else if (num2 == undefined) { // we have set our operator, and now first dig of num2
         num2 = num;
+        return num2;
     } else { // we have already set first digit of num2, and concatenate more
         num2 = concatenate(num2!, num);
+        return num2;
     }
 }
 
@@ -71,22 +75,30 @@ numBtns.forEach((btn: HTMLElement) => {
     let dataNum: number = parseInt(dataStr); // cast it to num
 
     btn.addEventListener('click', () => {
-        setNum(dataNum);
-        displayNum(dataNum);
+        let currentNum: number = setNum(dataNum);
+        displayNum(currentNum);
     });
 });
 
+function clearAll() {
+    clearNumData();
+    clearDisplay();
+}
 
-// clear our number data and set the 'display' to blank
-function clear() {
+// for entering new equations
+function clearNumData() {
     num1 = undefined;
     num2 = undefined;
+}
+
+// set the 'display' to blank
+function clearDisplay() {
     getElem('btnDisplay').innerText = '';
 }
 
 // add event listener to clear button, to clear:
 getElem('btnClear').addEventListener('click', () => {
-    clear();
+    clearAll();
 });
 
 //  add event listeners for function buttons:
