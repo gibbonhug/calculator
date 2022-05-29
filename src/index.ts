@@ -56,8 +56,7 @@ function setNum(num: number) {
 
 // display the number received from setNum in the display btn (usually clear)
 function displayNum(num: number) {
-    const btnDisplay = getElem('btnDisplay');
-    btnDisplay.innerText = num.toString();
+    getElem('btnDisplay').innerText = num.toString();
 }
 
 // add our event listeners to set and display nums:
@@ -71,4 +70,17 @@ numBtns.forEach((btn: HTMLElement) => {
         setNum(dataNum);
         displayNum(dataNum);
     });
+});
+
+
+// clear our number data and set the 'display' to blank
+function clear() {
+    num1 = undefined;
+    num2 = undefined;
+    getElem('btnDisplay').innerText = '';
+}
+
+// event listener to clear button, to clear:
+getElem('btnClear').addEventListener('click', () => {
+    clear();
 });
