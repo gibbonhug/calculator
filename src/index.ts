@@ -43,7 +43,7 @@ const resultBtns = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'bt
 // append:
 appendSiblings(getElem('resultDiv'), resultBtns);
 // set inner text, display has none on load:
-getElem('btnEquals').innerText = 'Equals';
+getElem('btnEquals').innerText = '=';
 getElem('btnClear').innerText = 'AC';
 
 
