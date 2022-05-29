@@ -3,29 +3,67 @@
     padding: 0px;
 }
 
-#contentContainer {
+
+
+#calcBody {
     background-color: hsl(255, 7%, 22%);
+    width: 80vh;
+    height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#displayContainer {
+    background-color: beige;
+    width: 65vh;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    height: 20vh;
+}
+
+#calcMeat {
+    padding: 2.5vh;
+    background-color: hsl(254, 6%, 39%);
+    width: 60vh;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    display: grid;
+    /* first column is numDiv, second is funcDiv */
+    grid-template-columns: 45vh 15vh;
+}
+
+#numDiv { /* 0-9 btns */
+    display: grid;
+    grid-template-columns: repeat(3, 15vh);
+    grid-template-rows: repeat(4, 15vh);
+}
+
+#btn0 { /* move the 0 to the bottom */
+    grid-row: 4;
+}
+
+#funcDiv {
+    justify-self: end;
+    display: grid;
+    grid-template-columns: repeat(1, 12vh);
+    grid-template-rows: repeat(5, 12vh);
 }
 
 body {
     background-color: purple;
 }
 
-.contentContainer {
-    display: flex;
-    flex-direction: column;
-}
-
-.calcBtn {
-    padding: 20px;
-}
 
 .numBtn {
-    background-color: blue;
+    border-radius: 10%;
+    background-color: hsl(240, 56%, 87%);
 }
 
 .funcBtn {
-    background-color: yellow;
+    border-radius: 50%;
+    background-color: hsl(39, 100%, 50%);
 }
 
 .resultBtn {
