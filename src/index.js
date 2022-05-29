@@ -31,8 +31,7 @@ const resultBtns = (0, function_1.createSimilarElems)('button', 1, ['resultBtn',
 let num1 = undefined;
 let num2 = undefined;
 // when clicking a number button (data is of str type):
-function setNum(numData) {
-    let num = parseInt(numData);
+function setNum(num) {
     // we have not set our first number yet, so we set it:
     if (num1 === undefined) {
         num1 = num;
@@ -42,8 +41,18 @@ function setNum(numData) {
     }
 }
 // display the number received from setNum in the display btn (usually clear)
-function displayNum(number) {
+function displayNum(num) {
     const btnDisplay = (0, function_1.getElem)('btnDisplay');
-    btnDisplay.innerText = number.toString();
+    btnDisplay.innerText = num.toString();
 }
 // add our event listeners to set and display nums:
+numBtns.forEach((btn) => {
+    let dataStr = btn.dataset.num; // retrieve info from dataset
+    let dataNum = parseInt(dataStr); // cast it to num
+    btn.addEventListener('click', () => {
+        console.log('dataNum:');
+        console.log(dataNum);
+        setNum(dataNum);
+        displayNum(dataNum);
+    });
+});

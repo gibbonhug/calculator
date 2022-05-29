@@ -45,8 +45,7 @@ let num2: number | undefined = undefined;
 
 
 // when clicking a number button (data is of str type):
-function setNum(numData: string) {
-    let num: number = parseInt(numData);
+function setNum(num: number) {
     // we have not set our first number yet, so we set it:
     if (num1 === undefined) {
         num1 = num;
@@ -56,9 +55,20 @@ function setNum(numData: string) {
 }
 
 // display the number received from setNum in the display btn (usually clear)
-function displayNum(number: number) {
+function displayNum(num: number) {
     const btnDisplay = getElem('btnDisplay');
-    btnDisplay.innerText = number.toString();
+    btnDisplay.innerText = num.toString();
 }
 
 // add our event listeners to set and display nums:
+numBtns.forEach((btn: HTMLElement) => {
+    let dataStr: string = btn.dataset.num!; // retrieve info from dataset
+    let dataNum: number = parseInt(dataStr); // cast it to num
+
+    btn.addEventListener('click', () => {
+        console.log('dataNum:');
+        console.log(dataNum);
+        setNum(dataNum);
+        displayNum(dataNum);
+    });
+});
