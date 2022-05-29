@@ -30,12 +30,11 @@ appendSiblings(getElem('funcDiv'), funcBtns);
     getElem('btnMultiply').innerText = 'Multiply';
     getElem('btnDivide').innerText = 'Divide';
 
-
-// create result and etc btns:
+// create result, display, and clear btns:
 const resultBtns = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'btnEquals', 'btnDisplay', 'btnClear');
 // append:
 appendSiblings(getElem('resultDiv'), resultBtns);
-// set inner text:
+// set inner text (none for display):
 getElem('btnEquals').innerText = 'Equals';
 getElem('btnClear').innerText = 'Clear';
 
@@ -61,3 +60,5 @@ function displayNum(number: number) {
     const btnDisplay = getElem('btnDisplay');
     btnDisplay.innerText = number.toString();
 }
+
+// add our event listeners to set and display nums:
