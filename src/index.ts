@@ -38,14 +38,18 @@ appendSiblings(getElem('funcDiv'), funcBtns);
     getElem('btnDivide').dataset.operator = '÷';
 
 
-// create result, display, and clear btns:
-const resultBtns = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'btnEquals', 'btnDisplay', 'btnClear');
+// create result(equals) and clear btns:
+const resultBtns = createSimilarElems('button', 0, ['resultBtn', 'calcBtn'], 'btnEquals', 'btnClear');
 // append:
 appendSiblings(getElem('resultDiv'), resultBtns);
 // set inner text, display has none on load:
 getElem('btnEquals').innerText = '=';
 getElem('btnClear').innerText = 'AC';
 
+// create the display:
+const displayBtn = createSimilarElems('div', 0, ['display'], 'divDisplay');
+// append:
+appendSiblings(getElem('displayContainer'), displayBtn);
 
 // init num and operator variables:
 let num1: number | undefined = undefined;
@@ -140,7 +144,7 @@ calcBtns.forEach((btn: HTMLElement) => {
 // display the number received from setNum or setOperator in the display btn (usually clear)
 // numbers are numbers; operators and errors are strings
 function display(input: number | string) {
-    getElem('btnDisplay').innerText = input.toString();
+    getElem('divDisplay').innerText = input.toString();
 }
 
 function clearAll() {
@@ -156,5 +160,5 @@ function clearData() {
 
 // set the 'display' to blank
 function clearDisplay() {
-    getElem('btnDisplay').innerText = '';
+    getElem('divDisplay').innerText = '';
 }
