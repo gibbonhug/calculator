@@ -26,16 +26,16 @@ const funcBtns = createSimilarElems('button', 0, ['funcBtn', 'calcBtn'], 'btnAdd
 appendSiblings(getElem('funcDiv'), funcBtns);
 // set inner text (done here bc using getElem), and set data:
     getElem('btnAdd').innerText = '+';
-    getElem('btnAdd').dataset.operator = 'add';
+    getElem('btnAdd').dataset.operator = '+';
 
     getElem('btnSubtract').innerText = '-';
-    getElem('btnSubtract').dataset.operator = 'subtract';
+    getElem('btnSubtract').dataset.operator = '-';
 
     getElem('btnMultiply').innerText = '×';
-    getElem('btnMultiply').dataset.operator = 'multiply';
+    getElem('btnMultiply').dataset.operator = '×';
 
     getElem('btnDivide').innerText = '÷';
-    getElem('btnDivide').dataset.operator = 'divide';
+    getElem('btnDivide').dataset.operator = '÷';
 
 
 // create result, display, and clear btns:
