@@ -30,9 +30,10 @@ appendSiblings(getElem('funcDiv'), funcBtns);
     getElem('btnDivide').innerText = 'Divide';
 
 
-// create result btn:
-const resultBtn = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'btnResult');
+// create result and etc btns:
+const resultBtns = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'btnResult', 'btnDisplay', 'btnClear');
 // append:
-appendSiblings(getElem('resultDiv'), resultBtn);
+appendSiblings(getElem('resultDiv'), resultBtns);
 // set inner text:
 getElem('btnResult').innerText = 'Result';
+getElem('btnClear').innerText = 'Clear';

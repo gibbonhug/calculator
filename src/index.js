@@ -19,9 +19,10 @@ const funcBtns = (0, function_1.createSimilarElems)('button', 0, ['funcBtn', 'ca
 (0, function_1.getElem)('btnSubtract').innerText = 'Subtract';
 (0, function_1.getElem)('btnMultiply').innerText = 'Multiply';
 (0, function_1.getElem)('btnDivide').innerText = 'Divide';
-// create result btn:
-const resultBtn = (0, function_1.createSimilarElems)('button', 1, ['resultBtn', 'calcBtn'], 'btnResult');
+// create result and etc btns:
+const resultBtns = (0, function_1.createSimilarElems)('button', 1, ['resultBtn', 'calcBtn'], 'btnResult', 'btnDisplay', 'btnClear');
 // append:
-(0, function_1.appendSiblings)((0, function_1.getElem)('resultDiv'), resultBtn);
+(0, function_1.appendSiblings)((0, function_1.getElem)('resultDiv'), resultBtns);
 // set inner text:
 (0, function_1.getElem)('btnResult').innerText = 'Result';
+(0, function_1.getElem)('btnClear').innerText = 'Clear';
