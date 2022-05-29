@@ -49,7 +49,7 @@ let num2: number | undefined = undefined;
 function setNum(numData: string) {
     let num: number = parseInt(numData);
     // we have not set our first number yet, so we set it:
-    if (num1 !== undefined) {
+    if (num1 == undefined) {
         num1 = num;
     } else { // we set our second number if already sat first
         num2 = num;
