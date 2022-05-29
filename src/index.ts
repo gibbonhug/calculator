@@ -42,7 +42,7 @@ appendSiblings(getElem('funcDiv'), funcBtns);
 const resultBtns = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'btnEquals', 'btnDisplay', 'btnClear');
 // append:
 appendSiblings(getElem('resultDiv'), resultBtns);
-// set inner text (none for display):
+// set inner text (display has none on load):
 getElem('btnEquals').innerText = 'Equals';
 getElem('btnClear').innerText = 'AC';
 
@@ -63,7 +63,7 @@ function setNum(num: number) {
         // (we concatenate input because that is how 'real' calculators work)
         num1 = concatenate(num1!, num);
         return num1;
-    } else if (num2 == undefined) { // we have set our operator, and now first dig of num2
+    } else if (num2 == undefined) { // we have set our operator, and this is first dig of num2
         num2 = num;
         return num2;
     } else { // we have already set first digit of num2, and concatenate more
@@ -74,15 +74,14 @@ function setNum(num: number) {
 
 // when clicking an operator (+, - etc) button
 function setOperator(str: string) {
-    if (num1 == undefined) { // we havent' set our first num yet, so we do nothing
-        return;
-    } else {
+    // if num1 is undefined, we don't have anything to operate on, so do nothing
+    if (num1 !== undefined) { 
         operator = str;
         return operator;
     }
 }
 
-// add our event listeners to set and display nums:
+// add event listeners to our 0-9 buttons:
 numBtns.forEach((btn: HTMLElement) => {
     let dataStr: string = btn.dataset.num!; // retrieve info from dataset
     let dataNum: number = parseInt(dataStr); // cast it to num
@@ -93,7 +92,7 @@ numBtns.forEach((btn: HTMLElement) => {
     });
 });
 
-// add our event listeners to set our operators (+,- etc btns):
+// add event listeners to our operator (+,- etc) btns:
 funcBtns.forEach((btn: HTMLElement) => {
     let operator: string = btn.dataset.operator!; // retrieve info from dataset
 
@@ -103,19 +102,25 @@ funcBtns.forEach((btn: HTMLElement) => {
     });
 });
 
-// event listener to equals btn, which uses current operator on nums:
+// add event listener to equals btn, which uses current operator on num1 and 2:
 getElem('btnEquals').addEventListener('click', () => {
-    // if any of these are undefined, we do not do anything:
-    if (typeof num1 == undefined ||  typeof num2 == undefined || typeof operator == undefined) { 
-        console.log('hi');
-        display('mess up');
-    } else {
-        let result: number = operate(operator!, num1!, num2!)!;
+    if (typeof num1 !== 'undefined' &&  
+        typeof num2 !== 'undefined' && 
+        typeof operator !== 'undefined') {
+        let result: number | string = operate(operator!, num1!, num2!)!; 
         display(result);
+        // set variables for performing more operations:
+        if (typeof result === 'number') { // result will be str if user div by 0
+            num1 = result; // for operating on prev results
+            operator = undefined;
+            num2 = undefined;
+        } else { // user div by 0
+            clearData(); // all 3 vars are now undefined
+        }
     }
 });
 
-// add event listener to AC button:
+// add event listener to AC (all clear(?)) button:
 getElem('btnClear').addEventListener('click', () => {
     clearAll();
 });
@@ -130,7 +135,6 @@ function clearAll() {
     clearDisplay();
 }
 
-// for entering new equations
 function clearData() {
     num1 = undefined;
     num2 = undefined;
