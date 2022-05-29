@@ -1,5 +1,5 @@
 import {
-    operate,
+    operate, concatenate,
 } from './math'
 
 import {
@@ -39,18 +39,24 @@ getElem('btnEquals').innerText = 'Equals';
 getElem('btnClear').innerText = 'Clear';
 
 
-// init num variables:
+// init num and operator variables:
 let num1: number | undefined = undefined;
 let num2: number | undefined = undefined;
+let operator: string | undefined = undefined;
 
 
 // when clicking a number button (data is of str type):
 function setNum(num: number) {
     // we have not set our first number yet, so we set it:
-    if (num1 === undefined) {
+    if (num1 === undefined && operator == undefined) {
         num1 = num;
-    } else { // we set our second number if already sat first
+    } else if (operator == undefined) { // we are still typing in our first num
+        // (we concatenate input because that is how 'real' calculators work)
+        num1 = concatenate(num1!, num);
+    } else if (num2 == undefined) { // we have set our operator, and now first dig of num2
         num2 = num;
+    } else { // we have already set first digit of num2, and concatenate more
+        num2 = concatenate(num2!, num);
     }
 }
 
@@ -78,7 +84,9 @@ function clear() {
     getElem('btnDisplay').innerText = '';
 }
 
-// event listener to clear button, to clear:
+// add event listener to clear button, to clear:
 getElem('btnClear').addEventListener('click', () => {
     clear();
 });
+
+//  add event listeners for function buttons:

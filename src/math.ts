@@ -27,6 +27,14 @@ function operate(operator: string, num1: number, num2: number) {
     }
 }
 
+
+// input two numbers to concatenate instead of add
+// ex: 4, 5 returns '45' (as a number)
+function concatenate(digit1: number, digit2: number) {
+    let numStr = ("" + digit1 + digit2);
+    return parseInt(numStr);
+}
+
 export {
-    operate,
+    operate, concatenate,
 }

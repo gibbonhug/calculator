@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const math_1 = require("./math");
 const function_1 = require("./function");
 require("./style.css");
 // create 0-9 buttons:
@@ -27,17 +28,25 @@ const resultBtns = (0, function_1.createSimilarElems)('button', 1, ['resultBtn',
 // set inner text (none for display):
 (0, function_1.getElem)('btnEquals').innerText = 'Equals';
 (0, function_1.getElem)('btnClear').innerText = 'Clear';
-// init num variables:
+// init num and operator variables:
 let num1 = undefined;
 let num2 = undefined;
+let operator = undefined;
 // when clicking a number button (data is of str type):
 function setNum(num) {
     // we have not set our first number yet, so we set it:
-    if (num1 === undefined) {
+    if (num1 === undefined && operator == undefined) {
         num1 = num;
     }
-    else { // we set our second number if already sat first
+    else if (operator == undefined) { // we are still typing in our first num
+        // (we concatenate input because that is how 'real' calculators work)
+        num1 = (0, math_1.concatenate)(num1, num);
+    }
+    else if (num2 == undefined) { // we have set our operator, and now first dig of num2
         num2 = num;
+    }
+    else { // we have already set first digit of num2, and concatenate more
+        num2 = (0, math_1.concatenate)(num2, num);
     }
 }
 // display the number received from setNum in the display btn (usually clear)
@@ -59,7 +68,8 @@ function clear() {
     num2 = undefined;
     (0, function_1.getElem)('btnDisplay').innerText = '';
 }
-// event listener to clear button, to clear:
+// add event listener to clear button, to clear:
 (0, function_1.getElem)('btnClear').addEventListener('click', () => {
     clear();
 });
+//  add event listeners for function buttons:

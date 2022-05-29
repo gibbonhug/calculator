@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.operate = void 0;
+exports.concatenate = exports.operate = void 0;
 function add(num1, num2) {
     return (num1 + num2);
 }
@@ -26,3 +26,10 @@ function operate(operator, num1, num2) {
     }
 }
 exports.operate = operate;
+// input two numbers to concatenate instead of add
+// ex: 4, 5 returns '45' (as a number)
+function concatenate(digit1, digit2) {
+    let numStr = ("" + digit1 + digit2);
+    return parseInt(numStr);
+}
+exports.concatenate = concatenate;
