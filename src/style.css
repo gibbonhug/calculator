@@ -1,16 +1,27 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
 }
 
 
 
-#calcBody {
-    background-color: hsl(255, 7%, 22%);
+#calcBorder {
+    background-color: hsl(255, 14%, 27%);
     width: 80vh;
     height: 100vh;
     margin-left: auto;
     margin-right: auto;
+    padding: 2.5vh;
+}
+
+#calcBody {
+    background-color: rgb(17, 5, 49);
+    width: 70vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2.5vh;
 }
 
 #displayContainer {
@@ -20,6 +31,15 @@
     margin-right: auto;
     justify-content: center;
     height: 20vh;
+    display: flex; /* center the display */
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#divDisplay {
+    background-color: brown;
+    width: 50vh;
+    margin-left: 1vh;
 }
 
 #calcMeat {
@@ -32,12 +52,14 @@
     display: grid;
     /* first column is numDiv, second is funcDiv */
     grid-template-columns: 45vh 15vh;
+    gap: 0.5vh;
 }
 
 #numDiv { /* 0-9 btns */
     display: grid;
     grid-template-columns: repeat(3, 15vh);
     grid-template-rows: repeat(4, 15vh);
+    gap: .5vh;
 }
 
 #btn0 { /* move the 0 to the bottom */
@@ -52,7 +74,7 @@
 }
 
 body {
-    background-color: purple;
+    background-color: rgb(5, 4, 5);
 }
 
 
