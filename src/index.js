@@ -1,7 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const math_1 = require("./math");
+const function_1 = require("./function");
 require("./style.css");
 let num = (0, math_1.operate)('add', 1, 7);
 console.log(num);
-console.log('helo');
+const paras = (0, function_1.createSimilarElems)('p', 3, ['hey,', 'ho'], 'one', 'two', 'three', 'four');
+(0, function_1.setInnerText)('I am text', paras);
+(0, function_1.appendSiblings)((0, function_1.getElem)('funcDiv'), paras);
