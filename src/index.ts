@@ -38,3 +38,20 @@ appendSiblings(getElem('resultDiv'), resultBtns);
 // set inner text:
 getElem('btnResult').innerText = 'Result';
 getElem('btnClear').innerText = 'Clear';
+
+
+// init num variables:
+let num1: number | undefined = undefined;
+let num2: number | undefined = undefined;
+
+
+// when clicking a number button (data is of str type):
+function setNum(numData: string) {
+    let num: number = parseInt(numData);
+    // we have not set our first number yet, so we set it:
+    if (num1 !== undefined) {
+        num1 = num;
+    } else { // we set our second number if already sat first
+        num2 = num;
+    }
+}

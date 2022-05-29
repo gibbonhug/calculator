@@ -27,3 +27,17 @@ const resultBtns = (0, function_1.createSimilarElems)('button', 1, ['resultBtn',
 // set inner text:
 (0, function_1.getElem)('btnResult').innerText = 'Result';
 (0, function_1.getElem)('btnClear').innerText = 'Clear';
+// init num variables:
+let num1 = undefined;
+let num2 = undefined;
+// when clicking a number button (data is of str type):
+function setNum(numData) {
+    let num = parseInt(numData);
+    // we have not set our first number yet, so we set it:
+    if (num1 !== undefined) {
+        num1 = num;
+    }
+    else { // we set our second number if already sat first
+        num2 = num;
+    }
+}
