@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+#contentContainer {
+    background-color: hsl(255, 7%, 22%);
+}
+
 body {
     background-color: purple;
 }
