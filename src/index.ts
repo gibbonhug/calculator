@@ -65,8 +65,6 @@ numBtns.forEach((btn: HTMLElement) => {
     let dataNum: number = parseInt(dataStr); // cast it to num
 
     btn.addEventListener('click', () => {
-        console.log('dataNum:');
-        console.log(dataNum);
         setNum(dataNum);
         displayNum(dataNum);
     });

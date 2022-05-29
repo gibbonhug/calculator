@@ -49,8 +49,6 @@ numBtns.forEach((btn) => {
     let dataStr = btn.dataset.num; // retrieve info from dataset
     let dataNum = parseInt(dataStr); // cast it to num
     btn.addEventListener('click', () => {
-        console.log('dataNum:');
-        console.log(dataNum);
         setNum(dataNum);
         displayNum(dataNum);
     });
