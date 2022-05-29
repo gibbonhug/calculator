@@ -18,3 +18,21 @@ for (let i = 0; i <= 9; i++) {
 }
 // append the 0-9 buttons:
 appendSiblings(getElem('numDiv'), numBtns);
+
+// create the function(operator) btns:
+const funcBtns = createSimilarElems('button', 0, ['funcBtn', 'calcBtn'], 'btnAdd', 'btnSubtract', 'btnMultiply', 'btnDivide');
+// append the func btns:
+appendSiblings(getElem('funcDiv'), funcBtns);
+// set inner text (done here bc using getElem):
+    getElem('btnAdd').innerText = 'Add';
+    getElem('btnSubtract').innerText = 'Subtract';
+    getElem('btnMultiply').innerText = 'Multiply';
+    getElem('btnDivide').innerText = 'Divide';
+
+
+// create result btn:
+const resultBtn = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'btnResult');
+// append:
+appendSiblings(getElem('resultDiv'), resultBtn);
+// set inner text:
+getElem('btnResult').innerText = 'Result';
