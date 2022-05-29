@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const math_1 = require("./math");
 const function_1 = require("./function");
 require("./style.css");
-let num = (0, math_1.operate)('add', 1, 7);
-console.log(num);
-const paras = (0, function_1.createSimilarElems)('p', 3, ['hey,', 'ho'], 'one', 'two', 'three', 'four');
-(0, function_1.setInnerText)('I am text', paras);
-(0, function_1.appendSiblings)((0, function_1.getElem)('funcDiv'), paras);
+// create 0-9 buttons:
+const numBtns = (0, function_1.createSimilarElems)('button', 0, ['numBtn', 'calcBtn'], 'btn0', 'btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8', 'btn9');
+// set the text to be 0-9:
+for (let i = 0; i <= 9; i++) {
+    numBtns[i].innerText = i.toString();
+}
+// append the 0-9 buttons:
+(0, function_1.appendSiblings)((0, function_1.getElem)('numDiv'), numBtns);
