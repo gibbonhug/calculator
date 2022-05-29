@@ -2,3 +2,12 @@
     margin: 0px;
     padding: 0px;
 }
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.calcBtn {
+    padding: 20px;
+}
