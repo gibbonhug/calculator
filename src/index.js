@@ -16,11 +16,15 @@ for (let i = 0; i <= 9; i++) {
 const funcBtns = (0, function_1.createSimilarElems)('button', 0, ['funcBtn', 'calcBtn'], 'btnAdd', 'btnSubtract', 'btnMultiply', 'btnDivide');
 // append the func btns:
 (0, function_1.appendSiblings)((0, function_1.getElem)('funcDiv'), funcBtns);
-// set inner text (done here bc using getElem):
+// set inner text (done here bc using getElem), and set data:
 (0, function_1.getElem)('btnAdd').innerText = 'Add';
+(0, function_1.getElem)('btnAdd').dataset.operator = 'add';
 (0, function_1.getElem)('btnSubtract').innerText = 'Subtract';
+(0, function_1.getElem)('btnSubtract').dataset.operator = 'subtract';
 (0, function_1.getElem)('btnMultiply').innerText = 'Multiply';
+(0, function_1.getElem)('btnMultiply').dataset.operator = 'multiply';
 (0, function_1.getElem)('btnDivide').innerText = 'Divide';
+(0, function_1.getElem)('btnDivide').dataset.operator = 'divide';
 // create result, display, and clear btns:
 const resultBtns = (0, function_1.createSimilarElems)('button', 1, ['resultBtn', 'calcBtn'], 'btnEquals', 'btnDisplay', 'btnClear');
 // append:
@@ -53,9 +57,15 @@ function setNum(num) {
         return num2;
     }
 }
-// display the number received from setNum in the display btn (usually clear)
-function displayNum(num) {
-    (0, function_1.getElem)('btnDisplay').innerText = num.toString();
+// when clicking an operator (+, - etc) button
+function setOperator(str) {
+    if (num1 == undefined) { // we havent' set our first num yet, so we do nothing
+        return;
+    }
+    else {
+        operator = str;
+        return operator;
+    }
 }
 // add our event listeners to set and display nums:
 numBtns.forEach((btn) => {
@@ -63,24 +73,48 @@ numBtns.forEach((btn) => {
     let dataNum = parseInt(dataStr); // cast it to num
     btn.addEventListener('click', () => {
         let currentNum = setNum(dataNum);
-        displayNum(currentNum);
+        display(currentNum);
     });
 });
+// add our event listeners to set our operators (+,- etc btns):
+funcBtns.forEach((btn) => {
+    let operator = btn.dataset.operator; // retrieve info from dataset
+    btn.addEventListener('click', () => {
+        setOperator(operator);
+        display(operator);
+    });
+});
+// event listener to equals btn, which uses current operator on nums:
+(0, function_1.getElem)('btnEquals').addEventListener('click', () => {
+    // if any of these are undefined, we do not do anything:
+    if (typeof num1 == undefined || typeof num2 == undefined || typeof operator == undefined) {
+        console.log('hi');
+        display('mess up');
+    }
+    else {
+        let result = (0, math_1.operate)(operator, num1, num2);
+        display(result);
+    }
+});
+// add event listener to AC button:
+(0, function_1.getElem)('btnClear').addEventListener('click', () => {
+    clearAll();
+});
+// display the number received from setNum or setOperator in the display btn (usually clear)
+function display(input) {
+    (0, function_1.getElem)('btnDisplay').innerText = input.toString();
+}
 function clearAll() {
-    clearNumData();
+    clearData();
     clearDisplay();
 }
 // for entering new equations
-function clearNumData() {
+function clearData() {
     num1 = undefined;
     num2 = undefined;
+    operator = undefined;
 }
 // set the 'display' to blank
 function clearDisplay() {
     (0, function_1.getElem)('btnDisplay').innerText = '';
 }
-// add event listener to clear button, to clear:
-(0, function_1.getElem)('btnClear').addEventListener('click', () => {
-    clearAll();
-});
-//  add event listeners for function buttons:

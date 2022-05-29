@@ -11,7 +11,16 @@ function multiply(num1, num2) {
     return (num1 * num2);
 }
 function divide(num1, num2) {
+    if (divide0test(num2)) {
+        return 'Divide by 0 error';
+    }
     return (num1 / num2);
+}
+function divide0test(divisor) {
+    if (divisor === 0) {
+        return true;
+    }
+    return false;
 }
 function operate(operator, num1, num2) {
     switch (operator) {
