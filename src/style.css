@@ -27,3 +27,7 @@ body {
 .resultBtn {
     background-color: green;
 }
+
+.pressed {
+    background-color: aliceblue;
+}

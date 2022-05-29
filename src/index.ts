@@ -42,7 +42,7 @@ appendSiblings(getElem('funcDiv'), funcBtns);
 const resultBtns = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'btnEquals', 'btnDisplay', 'btnClear');
 // append:
 appendSiblings(getElem('resultDiv'), resultBtns);
-// set inner text (display has none on load):
+// set inner text, display has none on load:
 getElem('btnEquals').innerText = 'Equals';
 getElem('btnClear').innerText = 'AC';
 
@@ -63,10 +63,10 @@ function setNum(num: number) {
         // (we concatenate input because that is how 'real' calculators work)
         num1 = concatenate(num1!, num);
         return num1;
-    } else if (num2 == undefined) { // we have set our operator, and this is first dig of num2
+    } else if (num2 == undefined) { // we have set our operator, and this is first/only dig of num2
         num2 = num;
         return num2;
-    } else { // we have already set first digit of num2, and concatenate more
+    } else { // we have already set first digit of num2, and now concatenate more
         num2 = concatenate(num2!, num);
         return num2;
     }
@@ -81,10 +81,10 @@ function setOperator(str: string) {
     }
 }
 
-// add event listeners to our 0-9 buttons:
+// event listeners to our 0-9 buttons:
 numBtns.forEach((btn: HTMLElement) => {
-    let dataStr: string = btn.dataset.num!; // retrieve info from dataset
-    let dataNum: number = parseInt(dataStr); // cast it to num
+    let dataStr: string = btn.dataset.num!; // each btn has data with 0-9 (as str)
+    let dataNum: number = parseInt(dataStr); // cast it to num for param type
 
     btn.addEventListener('click', () => {
         let currentNum: number = setNum(dataNum);
@@ -92,9 +92,9 @@ numBtns.forEach((btn: HTMLElement) => {
     });
 });
 
-// add event listeners to our operator (+,- etc) btns:
+// event listeners to our operator (+,- etc) btns:
 funcBtns.forEach((btn: HTMLElement) => {
-    let operator: string = btn.dataset.operator!; // retrieve info from dataset
+    let operator: string = btn.dataset.operator!; // each operator has ex. 'multiply' as data
 
     btn.addEventListener('click', () => {
         setOperator(operator);
@@ -102,7 +102,7 @@ funcBtns.forEach((btn: HTMLElement) => {
     });
 });
 
-// add event listener to equals btn, which uses current operator on num1 and 2:
+// event listener to equals btn, which uses current operator on num1 and 2:
 getElem('btnEquals').addEventListener('click', () => {
     if (typeof num1 !== 'undefined' &&  
         typeof num2 !== 'undefined' && 
@@ -120,12 +120,25 @@ getElem('btnEquals').addEventListener('click', () => {
     }
 });
 
-// add event listener to AC (all clear(?)) button:
+// event listener to AC (all clear(?)) button:
 getElem('btnClear').addEventListener('click', () => {
     clearAll();
 });
 
+// event listener to all buttons, which adds class ('pressed') that changes color
+        // includes results for now..
+let calcBtns: any = Array.from((document.querySelectorAll('.calcBtn')));
+calcBtns.forEach((btn: HTMLElement) => {
+    btn.addEventListener('click', () => {
+        // first remove all other pressed effects
+        removeClasses(calcBtns, 'pressed');
+        // then add it to current button
+        btn.classList.add('pressed');
+    });
+});
+
 // display the number received from setNum or setOperator in the display btn (usually clear)
+// numbers are numbers; operators and errors are strings
 function display(input: number | string) {
     getElem('btnDisplay').innerText = input.toString();
 }

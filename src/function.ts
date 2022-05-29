@@ -46,7 +46,7 @@ function addClasses(elem: HTMLOrHTMLArray, ...classes: any) {
 /* input a single element or array of elements, and multiple classes to remove
 Class parameters can be array of classes or classes
 returns this element/array of elements */
-function removeClasses(elem: HTMLOrHTMLArray, ...classes: any[]) {
+function removeClasses(elem: HTMLOrHTMLArray, ...classes: any) {
     if (Array.isArray(elem)) { // inputting array of elements instead of one element
         elem.forEach((subElem) => {
             removeClasses(subElem, ...classes);
