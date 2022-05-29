@@ -57,7 +57,7 @@ let num2: number | undefined = undefined;
 let operator: string | undefined = undefined;
 
 
-// when clicking a number button (data is of str type):
+// when clicking a number button:
 function setNum(num: number) {
     // we have not set our first number yet, so we set it:
     if (num1 === undefined && operator == undefined) {
@@ -65,15 +65,28 @@ function setNum(num: number) {
         return num1; // for display func
     } else if (operator == undefined) { // we are still typing in our first num
         // (we concatenate input because that is how 'real' calculators work)
-        num1 = concatenate(num1!, num);
+        if (checkBelowMaxLength(num1!)) { // num1 must be <= 13 chars to add more to it
+            num1 = concatenate(num1!, num);
+        }
         return num1;
     } else if (num2 == undefined) { // we have set our operator, and this is first/only dig of num2
         num2 = num;
         return num2;
     } else { // we have already set first digit of num2, and now concatenate more
-        num2 = concatenate(num2!, num);
+        if (checkBelowMaxLength(num2!)) { // num2 must be <= 13 chars to add more to it
+            num2 = concatenate(num2!, num);
+        }
         return num2;
     }
+}
+
+// want nums to be >= 13 chars to not overflow 'calculator screen'
+function checkBelowMaxLength(num: number) {
+    let numStr: string = num.toString();
+    if (numStr.length <= 13) {
+        return true;
+    }
+    return false; // num too long
 }
 
 // when clicking an operator (+, - etc) button
@@ -87,11 +100,11 @@ function setOperator(str: string) {
 
 // event listeners to our 0-9 buttons:
 numBtns.forEach((btn: HTMLElement) => {
-    let dataStr: string = btn.dataset.num!; // each btn has data with 0-9 (as str)
-    let dataNum: number = parseInt(dataStr); // cast it to num for param type
+    // each btn has relevant 0-9 as data:
+    let dataNum: number = parseInt(btn.dataset.num!); // cast str data to num for param type
 
     btn.addEventListener('click', () => {
-        let currentNum: number = setNum(dataNum);
+        let currentNum: number = setNum(dataNum)!; // concatenates if already nums
         display(currentNum);
     });
 });
