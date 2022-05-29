@@ -21,11 +21,11 @@ const funcBtns = (0, function_1.createSimilarElems)('button', 0, ['funcBtn', 'ca
 (0, function_1.getElem)('btnMultiply').innerText = 'Multiply';
 (0, function_1.getElem)('btnDivide').innerText = 'Divide';
 // create result and etc btns:
-const resultBtns = (0, function_1.createSimilarElems)('button', 1, ['resultBtn', 'calcBtn'], 'btnResult', 'btnDisplay', 'btnClear');
+const resultBtns = (0, function_1.createSimilarElems)('button', 1, ['resultBtn', 'calcBtn'], 'btnEquals', 'btnDisplay', 'btnClear');
 // append:
 (0, function_1.appendSiblings)((0, function_1.getElem)('resultDiv'), resultBtns);
 // set inner text:
-(0, function_1.getElem)('btnResult').innerText = 'Result';
+(0, function_1.getElem)('btnEquals').innerText = 'Equals';
 (0, function_1.getElem)('btnClear').innerText = 'Clear';
 // init num variables:
 let num1 = undefined;
@@ -34,10 +34,15 @@ let num2 = undefined;
 function setNum(numData) {
     let num = parseInt(numData);
     // we have not set our first number yet, so we set it:
-    if (num1 == undefined) {
+    if (num1 === undefined) {
         num1 = num;
     }
     else { // we set our second number if already sat first
         num2 = num;
     }
+}
+// display the number received from setNum in the display btn (usually clear)
+function displayNum(number) {
+    const btnDisplay = (0, function_1.getElem)('btnDisplay');
+    btnDisplay.innerText = number.toString();
 }

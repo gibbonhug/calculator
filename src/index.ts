@@ -32,11 +32,11 @@ appendSiblings(getElem('funcDiv'), funcBtns);
 
 
 // create result and etc btns:
-const resultBtns = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'btnResult', 'btnDisplay', 'btnClear');
+const resultBtns = createSimilarElems('button', 1, ['resultBtn', 'calcBtn'], 'btnEquals', 'btnDisplay', 'btnClear');
 // append:
 appendSiblings(getElem('resultDiv'), resultBtns);
 // set inner text:
-getElem('btnResult').innerText = 'Result';
+getElem('btnEquals').innerText = 'Equals';
 getElem('btnClear').innerText = 'Clear';
 
 
@@ -49,9 +49,15 @@ let num2: number | undefined = undefined;
 function setNum(numData: string) {
     let num: number = parseInt(numData);
     // we have not set our first number yet, so we set it:
-    if (num1 == undefined) {
+    if (num1 === undefined) {
         num1 = num;
     } else { // we set our second number if already sat first
         num2 = num;
     }
+}
+
+// display the number received from setNum in the display btn (usually clear)
+function displayNum(number: number) {
+    const btnDisplay = getElem('btnDisplay');
+    btnDisplay.innerText = number.toString();
 }
