@@ -5,10 +5,8 @@
     font-size: larger;
 }
 
-
-
 #calcBorder {
-    background-color: hsl(255, 14%, 27%);
+    background-color: hsl(164, 100%, 25%);
     width: 80vh;
     height: 100vh;
     margin-left: auto;
@@ -17,7 +15,7 @@
 }
 
 #calcBody {
-    background-color: rgb(17, 5, 49);
+    background-color: hsl(238, 41%, 23%);
     width: 70vh;
     margin-left: auto;
     margin-right: auto;
@@ -25,7 +23,7 @@
 }
 
 #displayContainer {
-    background-color: rgb(57, 57, 12);
+    background-color: hsl(259, 100%, 96%);
     width: 65vh;
     margin-left: auto;
     margin-right: auto;
@@ -37,14 +35,14 @@
 }
 
 #divDisplay {
-    color: white;
+    color: rgb(0, 0, 0);
     width: 50vh;
     margin-left: 1vh;
 }
 
 #calcMeat {
     padding: 2.5vh;
-    background-color: hsl(254, 6%, 39%);
+    background-color: hsl(246, 37%, 65%);
     width: 60vh;
     margin-left: auto;
     margin-right: auto;
@@ -68,6 +66,7 @@
 
 #btnEquals {
     grid-column: span 2;
+    background-color: greenyellow;
 }
 
 #funcDiv {
@@ -82,19 +81,17 @@ body {
     background-color: rgb(5, 4, 5);
 }
 
+.calcBtn {
+    border-radius: 10%;
+}
 
 .numBtn {
-    border-radius: 10%;
     background-color: hsl(240, 56%, 87%);
 }
 
 .funcBtn {
     border-radius: 50%;
     background-color: hsl(39, 100%, 50%);
-}
-
-.resultBtn {
-    background-color: green;
 }
 
 .pressed {
