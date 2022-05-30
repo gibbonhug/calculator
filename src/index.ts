@@ -64,29 +64,21 @@ let operator: string | undefined = undefined;
 
 // when clicking a number button:
 function setNum(num: number) {
-    if (operator === undefined) {
-        // we have not set our first number yet, so we set it:
-        if (num1 === undefined) {
+    if (operator === undefined) { // we have not set our first number yet, so we set it:
+        if (num1 === undefined) { // setting the first digit
             num1 = num;
-            return num1; // for display func
-        } else { // we are still typing in our first num
-            // (concatenate input because that is how 'real' calculators work)
-            if (checkBelowMaxLength(num1!)) { // num1 must be <= 13 chars to add more to it
-                num1 = concatenate(num1!, num);
-            }
-            return num1;
+        } else if (checkBelowMaxLength(num1!)) { // we are still typing in our first num
+            num1 = concatenate(num1!, num);  // (concatenate input because that is how 'real' calculators work)
+        } // if too long just stop letting add input, idk what normal calculators do?
+        return num1;
         }
-    }
     // both the operator and all of num1 are defined if reach here:
     if (num2 == undefined) { // this is first/only dig of num2
         num2 = num;
-        return num2;
-    } else { // we have already set first digit of num2, and now concatenate more
-        if (checkBelowMaxLength(num2!)) { // num2 must be <= 13 chars to add more to it
-            num2 = concatenate(num2!, num);
-        }
-        return num2;
+    } else if (checkBelowMaxLength(num2!)) { // we have already set first digit of num2
+        num2 = concatenate(num2!, num); // if too long, keep whatever 13 chars are (same logic)
     }
+    return num2;
 }
 
 // want nums to be >= 13 chars to not overflow 'calculator screen'
