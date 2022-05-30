@@ -57,7 +57,9 @@ const displayBtn = createSimilarElems('div', 0, ['display'], 'divDisplay');
 appendSiblings(getElem('displayContainer'), displayBtn);
 
 // init num and operator variables:
-let num1: number | undefined = undefined;
+// when these vars are 'undefined', usually it means user has hit AC button, or
+        // for operator and num2, haven't entered anything yet
+let num1: number | undefined = undefined; 
 let num2: number | undefined = undefined;
 let operator: string | undefined = undefined;
 
@@ -144,7 +146,6 @@ getElem('btnClear').addEventListener('click', () => {
 });
 
 // event listener to all buttons, which adds class ('pressed') that changes color
-        // includes results for now..
 let calcBtns: any = Array.from((document.querySelectorAll('.calcBtn')));
 calcBtns.forEach((btn: HTMLElement) => {
     btn.addEventListener('click', () => {
@@ -155,8 +156,8 @@ calcBtns.forEach((btn: HTMLElement) => {
     });
 });
 
-// display the number received from setNum or setOperator in the display btn (usually clear)
-// numbers are numbers; operators and errors are strings
+// display the number received from setNum or setOperator in the display btn
+// operators and error (div 0) are strings, while numbers are kept as number when passed
 function display(input: number | string) {
     getElem('divDisplay').innerText = input.toString();
 }
