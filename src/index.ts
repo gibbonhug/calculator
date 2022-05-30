@@ -39,22 +39,24 @@ appendSiblings(getElem('funcDiv'), funcBtns);
 
 // create clear btn:
 let settingsBtns = createSimilarElems('button', 1, ['settingsBtn', 'calcBtn'], 'btnClear');
+console.log(settingsBtns);
 // append:
 appendSiblings(getElem('funcDiv'), settingsBtns);
 // set inner text to 'AC' like on real calculator:
 getElem('btnClear').innerText = 'AC';
 
 // create equals btn:
-let resultBtns = createSimilarElems('button', 0, ['resultBtn', 'calcBtn'], 'btnEquals');
+let resultBtns = (createSimilarElems('button', 0, ['resultBtn', 'calcBtn'], 'btnEquals'));
 // append:
 appendSiblings(getElem('numDiv'), resultBtns);
 // equals sign for the text:
 getElem('btnEquals').innerText = '=';
 
 // create the display:
-const displayBtn = createSimilarElems('div', 0, ['display'], 'divDisplay');
+        // create similar elems returns an arr, so we get the first elem, which is our div
+let divDisplay = (createSimilarElems('div', 0, ['display'], 'divDisplay'))[0];
 // append:
-appendSiblings(getElem('displayContainer'), displayBtn);
+appendSiblings(getElem('displayContainer'), divDisplay);
 
 // init num and operator variables:
 // when these vars are 'undefined', usually it means user has hit AC button, or
@@ -157,9 +159,21 @@ calcBtns.forEach((btn: HTMLElement) => {
 });
 
 // display the number received from setNum or setOperator in the display btn
-// operators and error (div 0) are strings, while numbers are kept as number when passed
+// operators and error (div 0) are strings, while numbers are trimmed to <= 13 chars and typecast
 function display(input: number | string) {
-    getElem('divDisplay').innerText = input.toString();
+    if (typeof input === 'number') {
+        input = trimNumberToStr(input);
+    }
+    getElem('divDisplay').innerText = input;
+}
+
+// keep numbers to 13 chars, return them as str for display
+function trimNumberToStr(num: number) {
+    let numStr = num.toString();
+    if (!checkBelowMaxLength(num)) {
+        numStr = numStr.substring(0,14); // [0,14) range
+    }
+    return numStr;
 }
 
 function clearAll() {
