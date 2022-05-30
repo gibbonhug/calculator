@@ -44,14 +44,7 @@ function concatenate(digit1: number, digit2: number) {
     return parseInt(numStr);
 }
 
-// trim decimals to 13 # places
-function trimDecimal(num: number) {
-    let numStr: string = num.toString();
-    numStr = numStr.slice(0, numStr.indexOf(".")+13);
-    return parseInt(numStr);
-}
-
 
 export {
-    operate, concatenate, trimDecimal,
+    operate, concatenate,
 }

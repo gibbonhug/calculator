@@ -166,9 +166,6 @@ calcBtns.forEach((btn: HTMLElement) => {
 // display the number received from setNum or setOperator in the display btn (usually clear)
 // numbers are numbers; operators and errors are strings
 function display(input: number | string) {
-    if (typeof input === 'number' && !Number.isInteger(input)) {
-        input = trimDecimal(input); // trails to 13 places after 0
-    }
     getElem('divDisplay').innerText = input.toString();
 }
 
