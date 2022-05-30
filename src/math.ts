@@ -37,7 +37,6 @@ function operate(operator: string, num1: number, num2: number) {
     }
 }
 
-
 // input two numbers to concatenate instead of add
 // ex: 4, 5 returns '45' (as a number)
 function concatenate(digit1: number, digit2: number) {
@@ -45,6 +44,14 @@ function concatenate(digit1: number, digit2: number) {
     return parseInt(numStr);
 }
 
+// trim decimals to 13 # places
+function trimDecimal(num: number) {
+    let numStr: string = num.toString();
+    numStr = numStr.slice(0, numStr.indexOf(".")+13);
+    return parseInt(numStr);
+}
+
+
 export {
-    operate, concatenate,
+    operate, concatenate, trimDecimal,
 }
