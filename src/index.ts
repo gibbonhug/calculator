@@ -39,7 +39,6 @@ appendSiblings(getElem('funcDiv'), funcBtns);
 
 // create clear btn:
 let settingsBtns = createSimilarElems('button', 1, ['settingsBtn', 'calcBtn'], 'btnClear');
-console.log(settingsBtns);
 // append:
 appendSiblings(getElem('funcDiv'), settingsBtns);
 // set inner text to 'AC' like on real calculator:
