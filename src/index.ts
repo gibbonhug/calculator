@@ -1,5 +1,5 @@
 import {
-    operate, concatenate, trimDecimal,
+    operate, concatenate,
 } from './math'
 
 import {
