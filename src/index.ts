@@ -3,7 +3,7 @@ import {
 } from './math'
 
 import {
-    appendSiblings, addClasses, removeClasses, toggleClasses, createSimilarElems, isPositiveInteger, clearInnerText, setInnerText, getElem,
+    appendSiblings, removeClasses, createSimilarElems, getElem,
 } from './function'
 
 import './style.css';
